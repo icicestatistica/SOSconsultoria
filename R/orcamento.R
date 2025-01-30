@@ -144,17 +144,9 @@ descricaoanalises = c(descricaoanalises, paste0("\n **",unique(resumo_sessaoi$Se
   mult_imposto = 1/(1-imposto)
   
   
-  preco_parcelado = round(((valorbruto*(1+mult_prazo)*(1+mult_perfil)*(1+mult_conhecimento)*(1+mult_numero)*(1+mult_continuidade))+soma_extras)*mult_imposto,2)
+  preco_desconto = round(((valorbruto*(1+mult_prazo)*(1+mult_perfil)*(1+mult_conhecimento)*(1+mult_numero)*(1+mult_continuidade))+soma_extras)*mult_imposto,2)
   
-  preco_desconto = round(0.95*preco_parcelado,2)
-  
-  ### Parcelamentos
-  
-  preço_parcelas=rep(0,parcelas)
-  preço_parcelas[-1]=round(preco_parcelado/parcelas,2)
-  preço_parcelas[1]=preco_parcelado-sum(preço_parcelas[-1])
-  
-  dataparcelas = Sys.Date()+30*(1:parcelas-1)
+  preco_parcelado = round(preco_parcelado/0.9,2)
   
   crono = paste("Entrega do relatório no dia ",format(Sys.Date()+prazo, "%d/%m/%Y"),".",sep="",collapse="")
   
@@ -165,10 +157,11 @@ descricaoanalises = c(descricaoanalises, paste0("\n **",unique(resumo_sessaoi$Se
   
   # Investimento
   
-  invest1 = paste("O investimento para consultoria é de **R$ ",format_real(preco_parcelado),"**, pago em ",parcelas,"x, sendo: \n
-", paste(paste(" * _R$ ",format_real(preço_parcelas),"_ no dia ", dataparcelas,"; \n",sep=""),collapse=""),"
+  invest1 = paste("O investimento para consultoria é de \n
+ * **R$ ",format_real(preco_parcelado),"**, pago em até 3x no cartão de crédito
 OU \n
- * **R$ ",format_real(preco_desconto),"** (5% de desconto) à vista via pix, no ato do aceite da proposta. \n",sep="",collapse="")
+ * **R$ ",format_real(preco_desconto),"** (10% de desconto) à vista via pix, no ato do aceite da proposta. \n",sep="",collapse="") %>% cat()
+
   
   invest2 =  paste("Proposta válida até ",datavalido,".",sep="",collapse="")
   
@@ -201,9 +194,9 @@ A consultoria proposta inclui:
 ## INVESTIMENTO
 ",invest1,"
 **Dados bancários:** \n
-* Banco BS2 S.A. - 218
-* Agência: 0001-9
-* Conta: 9085203
+* Banco Cora SCD. - 403
+* Agência: 0001
+* Conta: 2833009-2
 * Razão Social - ISABELLE CRISTINA IDALGO LTDA
 * CNPJ - 41.986.330/0001-85
 
