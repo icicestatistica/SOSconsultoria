@@ -160,7 +160,7 @@ descricaoanalises = c(descricaoanalises, paste0("\n **",unique(resumo_sessaoi$Se
   invest1 = paste("O investimento para consultoria é de \n
  * **R$ ",format_real(preco_parcelado),"**, pago em até 3x no cartão de crédito
 OU \n
- * **R$ ",format_real(preco_desconto),"** (10% de desconto) à vista via pix, no ato do aceite da proposta. \n",sep="",collapse="") %>% cat()
+ * **R$ ",format_real(preco_desconto),"** (10% de desconto) à vista via pix, no ato do aceite da proposta. \n",sep="",collapse="")
 
   
   invest2 =  paste("Proposta válida até ",datavalido,".",sep="",collapse="")
