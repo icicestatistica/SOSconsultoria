@@ -146,7 +146,7 @@ descricaoanalises = c(descricaoanalises, paste0("\n **",unique(resumo_sessaoi$Se
   
   preco_desconto = round(((valorbruto*(1+mult_prazo)*(1+mult_perfil)*(1+mult_conhecimento)*(1+mult_numero)*(1+mult_continuidade))+soma_extras)*mult_imposto,2)
   
-  preco_parcelado = round(preco_parcelado/0.9,2)
+  preco_parcelado = round(preco_desconto/0.9,2)
   
   crono = paste("Entrega do relatório no dia ",format(Sys.Date()+prazo, "%d/%m/%Y"),".",sep="",collapse="")
   
