@@ -34,6 +34,7 @@ if(length(cols_cat>0)){
 df = dados[,c(cols_cat,nresp)] %>% 
   cbind("Id"=1:(dim(dados)[1])) %>% 
   pivot_longer(cols=1:length(cols_cat)) %>% 
+  na.omit() %>%
   rename("resp"=1) %>% 
   group_by(name,value,resp) %>% 
   summarise("Freq"=n()) %>%
