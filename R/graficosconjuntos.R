@@ -46,7 +46,7 @@ graf_biv_cat = function(nome){
 
 graf = df %>% 
   filter(name==nome) %>% 
-  mutate(value=factor(value,levels=niv[nome]) %>%
+  mutate(value=factor(value,levels=niv[nome])) %>%
   ggplot(aes(y=value,fill=resp,x=Freq)) +
   geom_bar(stat="identity",position="fill") +
   theme_icic() +
