@@ -24,6 +24,9 @@ cols_cont = cols[classes %in% c("numeric","integer")]
 namescat = nomescols[classes %in% c("factor","character")]
 namescont = nomescols[classes %in% c("numeric","integer")]
 
+niv = lapply(dados[,cols_cat],function(x) names(table(x)))
+names(niv)=namescat
+
 ### Gráficos pra categóricas
 
 if(length(cols_cat>0)){
@@ -43,6 +46,7 @@ graf_biv_cat = function(nome){
 
 graf = df %>% 
   filter(name==nome) %>% 
+  mutate(value=factor(value,levels=niv[nome]) %>%
   ggplot(aes(y=value,fill=resp,x=Freq)) +
   geom_bar(stat="identity",position="fill") +
   theme_icic() +
