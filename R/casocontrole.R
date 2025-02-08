@@ -44,12 +44,6 @@ get_ORs = function (dados, ngrupo, refgrupo, cols, refs)
 casocontrole = function(dados,cols,refs,ngrupo,refgrupo,...){
 
 ### ORs
-cols=c(2,7,10,11,14,16,26,40,17,39)
-refs = c("F",NA,NA,NA,NA,NA,NA,"Normal",NA,"Não")
-ngrupo=41
-refgrupo="Normal"
-n_colunas = 2;titulo="acima";cor=c("cyan4","coral3")
-
 ORs = get_ORs(dados,41,"Normal",c(cols),refs)
 ORs$cara = str_remove_all(ORs$cara,fixed("`"))
 
