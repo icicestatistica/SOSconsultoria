@@ -44,7 +44,7 @@ get_ORs = function (dados, ngrupo, refgrupo, cols, refs)
 casocontrole = function(dados,cols,refs,ngrupo,refgrupo,...){
 
 ### ORs
-ORs = get_ORs(dados,41,"Normal",c(cols),refs)
+ORs = get_ORs(dados,ngrupo,refgrupo,c(cols),refs)
 ORs$cara = str_remove_all(ORs$cara,fixed("`"))
 
 ### Tabela descritiva
