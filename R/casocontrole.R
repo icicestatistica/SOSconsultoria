@@ -83,7 +83,11 @@ ORgraf[ORgraf$OR=="ref",]$X2.5..=NA
 ORgraf[ORgraf$OR=="ref",]$X97.5..=NA
 
 ORgraf %>% 
-  mutate(cara=factor(cara,levels=unique(cara))) %>% 
+  mutate(cara=factor(cara,levels=unique(cara))) %>%
+  group_by(cara) %>%   # Agrupa por facet
+  arrange(cara, OR.1) %>%   # Ordena dentro de cada facet
+  mutate(Característica = factor(Característica, levels = unique(Característica))) %>%  # Define a ordem dos fatores
+  ungroup() %>%
   ggplot(aes(y=Característica,x=as.numeric(OR.1))) +
   geom_point() +
   geom_errorbarh(aes(y=Característica,xmin=as.numeric(X2.5..),xmax=as.numeric(X97.5..))) +
