@@ -82,23 +82,6 @@ ORgraf[ORgraf$OR=="ref",]$OR.1=1
 ORgraf[ORgraf$OR=="ref",]$X2.5..=NA
 ORgraf[ORgraf$OR=="ref",]$X97.5..=NA
 
-ORgraf %>% 
-  mutate(cara=factor(cara,levels=unique(cara))) %>%
-  group_by(cara) %>%   # Agrupa por facet
-  arrange(Característica, OR.1) %>%   # Ordena dentro de cada facet
-  mutate(Característica = factor(Característica, levels = unique(Característica))) %>%  # Define a ordem dos fatores
-  ungroup() %>%
-  ggplot(aes(y=Característica,x=as.numeric(OR.1))) +
-  geom_point() +
-  geom_errorbarh(aes(y=Característica,xmin=as.numeric(X2.5..),xmax=as.numeric(X97.5..))) +
-  facet_grid(cara ~.,space="free_y",scales="free",switch = "y") +
-  geom_vline(xintercept=1,color="red") +
-  theme_icic("v") +
-  scale_x_continuous(trans = "log10") +
-  theme(strip.text.y.left = element_text(angle = 0, face = "bold", hjust = 0.5),
-        strip.placement = "outside")
-
-
 ordem = ORgraf %>% 
   filter(OR!="ref") %>% 
   group_by(cara) %>% 
@@ -110,14 +93,18 @@ ordem = ORgraf %>%
 
 grafOR = ORgraf %>% 
   mutate(cara = factor(cara, levels = ordem)) %>%
-  ggplot(aes(y = Característica, x = as.numeric(OR.1))) +
+  group_by(cara) %>%   # Agrupa por facet
+  arrange(Característica, as.numeric(OR.1)) %>%   # Ordena dentro de cada facet
+  mutate(Característica = factor(Característica, levels = unique(Característica))) %>%  # Define a ordem dos fatores
+  ungroup() %>%
+  ggplot(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)), x = as.numeric(OR.1))) +
   geom_point() +
-  geom_errorbarh(aes(y = Característica, xmin = as.numeric(X2.5..), xmax = as.numeric(X97.5..))) +
+  geom_errorbarh(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)), xmin = as.numeric(X2.5..), xmax = as.numeric(X97.5..))) +
   facet_grid(cara ~ ., space = "free_y", scales = "free", switch = "y") +
   geom_vline(xintercept = 1, color = "red",linetype=2) +
-  geom_text(aes(x=0.1,label = ifelse(cara != Característica, Característica, "")), 
-            hjust = 0, vjust = 0,stat="identity") +
-  geom_text(aes(label = ifelse(sign((as.numeric(X2.5..)-1)*(as.numeric(X97.5..)-1))>0, "*", "")), 
+  geom_text(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)),x=0.1,label = ifelse(as.character(cara) != as.character(Característica), as.character(Característica), "")), 
+            hjust = 0, vjust = 0) +
+  geom_text(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)),label = ifelse(sign((as.numeric(X2.5..)-1)*(as.numeric(X97.5..)-1))>0, "*", "")), 
             nudge_y = 0.3,color="red") +# Adiciona os rótulos apenas quando forem diferentes
   theme_icic("v") +
   labs(y=NULL) +
