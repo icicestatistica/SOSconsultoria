@@ -1,4 +1,4 @@
-get_ORs = function (dados, ngrupo, refgrupo, cols, refs) 
+get_ORs = function (dados, ngrupo, refgrupo, cols, refs,auxiliar) 
 {
   
   nomes = names(dados)[cols]
