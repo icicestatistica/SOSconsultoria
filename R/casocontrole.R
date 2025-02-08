@@ -102,14 +102,14 @@ grafOR = ORgraf %>%
   geom_errorbarh(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)), xmin = as.numeric(X2.5..), xmax = as.numeric(X97.5..))) +
   facet_grid(cara ~ ., space = "free_y", scales = "free", switch = "y") +
   geom_vline(xintercept = 1, color = "red",linetype=2) +
-  geom_text(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)),x=0.1,label = ifelse(as.character(cara) != as.character(Característica), as.character(Característica), "")), 
+  geom_text(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)),x=0.8*min(as.numeric(ORgraf$X2.5..),na.rm=T),label = ifelse(as.character(cara) != as.character(Característica), as.character(Característica), "")), 
             hjust = 0, vjust = 0) +
   geom_text(aes(y = forcats::fct_reorder(Característica,as.numeric(OR.1)),label = ifelse(sign((as.numeric(X2.5..)-1)*(as.numeric(X97.5..)-1))>0, "*", "")), 
             nudge_y = 0.3,color="red") +# Adiciona os rótulos apenas quando forem diferentes
   theme_icic("v") +
   labs(y=NULL) +
-  scale_x_continuous(expand=c(0,0.1),
-                     trans = "log10",limits=c(0.1,1.1*max(as.numeric(ORgraf$X97.5..),na.rm=T)),
+  scale_x_continuous(expand=c(0,0.05),
+                     trans = "log10",limits=c(0.8*min(as.numeric(ORgraf$X2.5..),na.rm=T),1.1*max(as.numeric(ORgraf$X97.5..),na.rm=T)),
                      name="OR (IC95%)",
                      n.breaks = 8) +
   theme(
