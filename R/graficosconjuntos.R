@@ -42,12 +42,13 @@ df = dados[,c(cols_cat,nresp)] %>%
   group_by(name,value) %>% 
   summarise(Total=sum(Freq),Freq=Freq,resp=resp) %>% 
   mutate(label=paste0(Freq,"\n",round(100*Freq/Total,1),"%"))
+  
 
 graf_biv_cat = function(nome){
 
 graf = df %>% 
   filter(name==nome) %>% 
-  mutate(value=factor(value,levels=unlist(niv[nome]))) %>%
+  mutate(value=factor(vetor_comsep_c(value,25),levels=vetor_comsep_c(unlist(niv[nome]),25))) %>%
   ggplot(aes(y=value,fill=resp,x=Freq)) +
   geom_bar(stat="identity",position="fill") +
   theme_icic() +
