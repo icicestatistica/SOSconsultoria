@@ -41,7 +41,7 @@ get_ORs = function (dados, ngrupo, refgrupo, cols, refs,auxiliar)
    return(ORs)}
 
 
-casocontrole = function(dados,cols,refs,ngrupo,refgrupo,...){
+casocontrole = function(dados,cols,refs,ngrupo,refgrupo,auxiliar,...){
 
 ### ORs
 ORs = get_ORs(dados,ngrupo,refgrupo,c(cols),refs)
