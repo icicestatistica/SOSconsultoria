@@ -120,5 +120,8 @@ grafOR = ORgraf %>%
   )
 
 caption = paste0(a$caption,"; OR (IC95%): odds ratio com intervalo de 95% de confiança")
+result = list("testes"=a$testes,"resumo"=a$resumo,"tabela"=tabfim,"caption"=caption,"grafico"=graf,"grafOR"=grafOR)
 
-return(list("testes"=a$testes,"resumo"=a$resumo,"tabela"=tabfim,"caption"=caption,"grafico"=graf,"grafOR"=grafOR))}
+attributes(result)=list("ORgraf"=ORgraf)
+                  
+return(result)}
