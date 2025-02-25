@@ -56,9 +56,9 @@ comps=NULL;compsintra=NULL;compsentre=NULL
 
 fat = "intra"
 if("entre:intra" %in% signifs) {
-  if("intra" %in% signifs)
-    {comps = df %>%  group_by(entre) %>% emmeans_test(resp ~ intra, p.adjust.method = "bonf"); fat="entre"} else
-      {comps = df %>%  group_by(intra) %>% emmeans_test(resp ~ entre, p.adjust.method = "bonf")}} 
+  if("entre" %in% signifs)
+    {comps = df %>%  group_by(intra) %>% emmeans_test(resp ~ entre, p.adjust.method = "bonf"); fat="intra"} else
+      {comps = df %>%  group_by(entre) %>% emmeans_test(resp ~ intra, p.adjust.method = "bonf")}} 
   if("intra" %in% signifs) compsintra = df %>% emmeans_test(resp ~ intra, p.adjust.method = "bonf")
   if("entre" %in% signifs) compsentre = df %>% emmeans_test(resp ~ entre, p.adjust.method = "bonf")
 
