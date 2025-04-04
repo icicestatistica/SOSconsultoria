@@ -54,7 +54,7 @@ if(length(signifs)==0) {texc=""} else {
 texcint="";texcintra="";texcentre=""
 comps=NULL;compsintra=NULL;compsentre=NULL
 
-fat = "intra"
+fat = "entre"
 if("entre:intra" %in% signifs) {
   if("entre" %in% signifs)
     {comps = df %>%  group_by(intra) %>% emmeans_test(resp ~ entre, p.adjust.method = "bonf"); fat="intra"} else
