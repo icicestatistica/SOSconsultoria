@@ -29,7 +29,7 @@ contcont = function (y, x, nomey, nomex, dig = 2, cor = "cyan4", idioma = "PT",
         else {
             str2 = shapiro.test(y)
         }
-        if (str1 == "N/A" || str2 == "N/A") 
+        if (str1[1] == "N/A" || str2[1] == "N/A") 
             sup = c(" A suposição de normalidade das amostras não pode ser verificada pelo teste de Shapiro-Wilk, uma vez que o tamanho de pelo menos uma das amostras foi menor que 3 ou maior que 5000. Por este motivo, utilizamos o teste não paramétrico de correlação de spearman ao invés da correlação de pearson.")
         else {
             if (str1$p.value >= 0.05 & str2$p.value >= 0.05) {
