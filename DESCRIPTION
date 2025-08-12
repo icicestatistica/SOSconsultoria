@@ -1,11 +1,11 @@
 Package: SOSconsultoria
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Análises rápidas e formatadas automaticamente
 Version: 0.1.0
 Author: ICIC
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Maintainer: Isabelle Idalgo Carnielli  <icicestatistica@gmail.com>
+Description: O pacote SOSconsultoria reúne funções desenvolvidas ao longo de anos de consultoria estatística para agilizar e padronizar análises de dados no R. Ele oferece ferramentas para cálculos estatísticos, testes de hipóteses, geração de tabelas e gráficos, bem como funções auxiliares para manipulação e organização de dados. Com foco em praticidade e reprodutibilidade, o pacote facilita a aplicação de métodos estatísticos de forma rápida, clara e consistente, poupando tempo na execução de análises recorrentes.
+License: 
 Encoding: UTF-8
 LazyData: true
+
