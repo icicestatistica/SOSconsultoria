@@ -41,6 +41,7 @@ tab_medias = dat %>%
 ### Gráfico
 
 graf = dat %>% 
+  mutate(entre=as.character(entre)) %>%
   ggplot() +
   geom_point(aes(y=Média, x=intra, color=entre, group=entre)) +
   geom_line(aes(y=Média, x=intra, color=entre, group=entre), size=1) +
