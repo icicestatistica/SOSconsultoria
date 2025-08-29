@@ -9,7 +9,7 @@ anova_mista = function(resp,nomeresp,entre,nomeentre,intra,nomeintra,id){
   na.omit() %>%
   pivot_longer(cols=-c(1,2)) %>% 
   rename("intra"=3,"resp"=4)  %>%
-  mutate(intra=factor(intra,levels=lev_intra)
+  mutate(intra=factor(intra,levels=lev_intra))
 
 mod.ANOVA <- ez::ezANOVA(data = df,
                      dv = .(resp),
