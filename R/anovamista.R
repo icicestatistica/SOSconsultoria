@@ -1,12 +1,15 @@
 anova_mista = function(resp,nomeresp,entre,nomeentre,intra,nomeintra,id){
+
+  lev_intra = levels(intra)
   
-    df2 = data.frame(resp, entre, intra, id) %>% na.omit()
+  df2 = data.frame(resp, entre, intra, id) %>% na.omit()
     
   df = df2 %>% 
-  pivot_wider(names_from = intra,values_from = resp) %>% 
-  na.omit() %>% 
+  pivot_wider(names_from = intra,values_from = resp) %>%  
+  na.omit() %>%
   pivot_longer(cols=-c(1,2)) %>% 
-  rename("intra"=3,"resp"=4)
+  rename("intra"=3,"resp"=4)  %>%
+  mutate(intra=factor(intra,levels=lev_intra)
 
 mod.ANOVA <- ez::ezANOVA(data = df,
                      dv = .(resp),
