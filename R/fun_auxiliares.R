@@ -217,4 +217,22 @@ mudar = sapply(id_vaz, function(x) max(id_nvaz[id_nvaz<x]))
 vec_novo = vec
 vec_novo[id_vaz] = vec[mudar]
 
-return(vec_novo)}                       
+return(vec_novo)}
+
+get_ggplots <- function(x) {
+  res <- list()
+  
+  for (i in seq_along(x)) {
+    item <- x[[i]]
+    
+    if (inherits(item, "ggplot")) {
+      res <- c(res, list(item))
+      
+    } else if (is.list(item)) {
+      # chama recursivamente
+      res <- c(res, get_ggplots(item))
+    }
+  }
+  
+  res
+}
