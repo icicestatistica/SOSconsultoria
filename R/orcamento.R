@@ -1,3 +1,23 @@
+add_watermark <- function(cor="darkblue",tamanho=12,texto=paste0('GRÁFICO CONFECCIONADO PARA ORÇAMENTO\nENVIADO EM ',Sys.Date(),'\n ICIC CONSULTORIA ESTATÍSTICA\n PRODUZIDO POR:\nISABELLE CRISTINA IDALGO CARNIELLI')) return(paste0("
+      annotation_custom(
+    grid::textGrob('",
+      texto,"',
+      gp = grid::gpar(
+        col = '",cor,"',
+        alpha = 0.8,
+        fontsize = ",tamanho,",
+        fontface = 'bold'
+      ),
+      rot = 0
+    ),
+    xmin = -Inf, xmax = Inf,
+    ymin = -Inf, ymax = Inf
+  )"))
+
+
+# uso:
+# + eval(parse(text=add_watermark()))
+
 orcamento <- function(dataenviobancobruto="01/02/2023",
                       bancobruto=dados,
                       auxiliar=auxiliar,
