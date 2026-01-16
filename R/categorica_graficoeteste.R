@@ -124,7 +124,7 @@ grafico_categorica = function(var,nome,niveis = "auto",cor = "cyan4",ordenar = T
                     plot.subtitle = element_text(
                         size = ceiling(12 * 1.05)
                     ),
-                    plot.background = element_rect(colour = "white")
+                    plot.background = element_rect(fill = NA, colour = NA)
                 ) +
                 geom_text(
                     aes(
