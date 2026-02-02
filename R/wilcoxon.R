@@ -52,7 +52,7 @@ wilcox = function (id, time, num, nomex, moms, tipox = "numeric", nometime = "Mo
             a2, ",p", a3, ")", collapse = ""), list(a2 = a2, 
             a3 = a3))
         grafico = grafico_catcat(df_long$time, nometime, df_long$num, 
-            nomex, texto = textograf) + labs(title = vetor_comsep_c(paste0("Diferença de proporções de ", 
+            nomex, texto = textograf,cor=cor) + labs(title = vetor_comsep_c(paste0("Diferença de proporções de ", 
             nomex), 40))
         res = desc_bi_cat(df_long$num, col = df_long$time, respcol = F)[-1, 
             -2]
