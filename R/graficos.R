@@ -241,11 +241,9 @@ grafico_catcat <- function(x,nomex,y,nomey,cor="cyan4",texto="", idioma="PT", la
                                                          d_completo$Freq.1, 1), "%)")
   d_completo$Var1 <- factor(d_completo$Var1)
   # --- FIX: casar o n com a categoria por NOME, não por posição ---
-  n_por_categoria <- table(help$x)
-  n_str <- n_por_categoria[as.character(levels(d_completo$Var1))]  # indexa por nome
-  novos_niveis <- paste0(levels(d_completo$Var1),
-                          ifelse(printn, paste0(" (n=", n_str, ")"), ""))
-  levels(d_completo$Var1) <- vetor_comsep_c(novos_niveis, floor(60/length(novos_niveis)))
+  n_label <- if (printn) paste0(" (n=", table(help$x), ")") else ""
+  levels(d_completo$Var1) = vetor_comsep_c(paste0(levels(d_completo$Var1), n_label),
+                                          floor(60/length(levels(d_completo$Var1))))
   # --- fim do fix ---
   titulo = ifelse(idioma == "PT", paste0("Associação entre '",nomex, "' e '", nomey, "' (n=", dim(na.omit(help))[1], 
                                          ")"), paste0("Association between '", nomex, "' and '", nomey, "' (n=", dim(na.omit(help))[1], ")"))
