@@ -1,4 +1,4 @@
-matrizcorrel = function (x, nomes=NULL, metodo="pearson",use="pairwise.complete.obs", margin=100, size=3) 
+matrizcorrel = function (x, nomes=NULL, metodo="pearson",use="pairwise.complete.obs", marg=100, size=3) 
 {
   library(corrplot)
   if(is.null(nomes)) nomes = names(x) else names(x) = nomes
@@ -88,7 +88,7 @@ grafico = ggplot(dados2,
   theme(
     axis.text.x = element_blank(),
     axis.ticks.x = element_blank(),
-    plot.margin = margin(r = margin),
+    plot.margin = margin(0,marg,0,0),
     legend.position='bottom',
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
