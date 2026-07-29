@@ -258,8 +258,8 @@ visualizar_missings = function(dados,opcoes_alem_de_NA = c("","NA")){
     as.data.frame() %>% 
     mutate(across(everything(),function(x) factor(x, levels=c(nomes_cols,"na_verdadeiro","certo"))))
 
-  vis_linha = cat_same_levels(d_trans,cor=cores)$grafico
-  vis_coluna = cat_same_levels(sem_dados, cor=cores)$grafico
+  vis_linha = cat_same_levels(d_trans,cor=cores)
+  vis_coluna = cat_same_levels(sem_dados, cor=cores)
                   
                   
  return(list("df_coluna"=sem_dados,
