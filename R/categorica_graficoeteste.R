@@ -52,22 +52,34 @@ grafico_categorica = function (var, nome, niveis = "auto", cor = "cyan4", ordena
             "%)")))
     
     
-    values = if (length(cor) == 1) {lighten(cor, seq(0, 0.3, (0.3/(length(tab$var) - 1))))} else {cor}
-    
-    cor_barras = values[1]
-    cor_pizza = values[c(1,2)]
-    
-    contraste_bw_hex <- function(hex) {
+    values = if (length(cor) == 1) {
+  if (length(tab$var) == 1) {
+    cor
+  } else {
+    lighten(
+      cor,
+      seq(0, 0.3, length.out = length(tab$var))
+    )
+  }
+} else {
+  cor
+}
+
+cor_barras = values[1]
+
+cor_pizza = values[seq_len(min(2, length(values)))]
+
+contraste_bw_hex <- function(hex) {
   rgb <- col2rgb(hex)
-  
+
   L <- 0.299 * rgb[1, ] +
        0.587 * rgb[2, ] +
        0.114 * rgb[3, ]
-  
+
   ifelse(L > 186, "black", "white")
-    }
-    
-    cor_texto_pizza = sapply(cor_pizza,contraste_bw_hex)
+}
+
+cor_texto_pizza = sapply(cor_pizza, contraste_bw_hex)
     
     if (ordenar == T) {
         if (length(niveis) > 2) {
