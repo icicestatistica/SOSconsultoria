@@ -1,7 +1,11 @@
 resumo_inner = function(anali){
 resumo = c()
 if(dim(anali)[1]==1) resumo = paste0("\n - ",anali$resumo) else {
-if(length(table(anali$Nome1))>1) {nomes_res=anali$Nome1; ref=unique(anali$Nome2)} else {nomes_res = anali$Nome2 ; ref=unique(anali$Nome1)}
+  todos <- c(anali$Nome1, anali$Nome2)
+  tab <- table(todos)
+  ref_nome <- names(tab)[which.max(tab)] 
+  nomes_res <- ifelse(anali$Nome1 == ref_nome, anali$Nome2, anali$Nome1)
+  ref <- ref_nome}
 
 if(sum(anali$sig_ou_não=="cat")>0) {
   resumo = c(resumo,paste0("\n - ",unique(anali[anali$sig_ou_não=="cat",]$resumo)))}  else {
