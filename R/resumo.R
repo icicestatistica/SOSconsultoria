@@ -5,7 +5,7 @@ if(dim(anali)[1]==1) resumo = paste0("\n - ",anali$resumo) else {
   tab <- table(todos)
   ref_nome <- names(tab)[which.max(tab)] 
   nomes_res <- ifelse(anali$Nome1 == ref_nome, anali$Nome2, anali$Nome1)
-  ref <- ref_nome}
+  ref <- ref_nome
 
 if(sum(anali$sig_ou_não=="cat")>0) {
   resumo = c(resumo,paste0("\n - ",unique(anali[anali$sig_ou_não=="cat",]$resumo)))}  else {
