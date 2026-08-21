@@ -36,7 +36,7 @@ catcat <- function(x,y,nomex,nomey,niveisx=F,niveisy=F,dig=2,respcol=T,excluirto
       result=pairwiseNominalIndependence(tabela,fisher=T,chisq=F, gtest=F,digits=3,simulate.p.value = T)
       texto=c(" * **",ref,":** A associação entre as variáveis foi testada através do teste Exato de Fisher, que encontrou evidências para rejeitar a hipótese de ausência de associação. As categorias que apresentaram diferenças estatisticamente significativas foram.","\n")
     }}   else{
-      metodograf="Qui-quadrado "
+      metodograf=ifelse(idioma=="PT","Qui-quadrado ","Chi-square ")
       pvalorc=quiqua2$p.value
       resumotestes=ifelse(quiqua2$p.value<0.05,paste0("Encontramos associação estatisticamente significativa entre ",nomex," e ",nomey," (",paste("$\\chi^2$",collapse=NULL),"(",quiqua2$parameter,") = ", round(quiqua2$statistic,dig)," p=", pvalor(quiqua2$p.value),")",collapse="",sep=""),paste0("Não encontramos associação estatisticamente significativa entre ",nomex," e ",nomey," (",paste("$\\chi^2$",collapse=NULL),"(",quiqua2$parameter,") = ", round(quiqua2$statistic,dig)," p=", pvalor(quiqua2$p.value),")",collapse="",sep=""))
       para=round(quiqua2$parameter,dig) ; stat=round(quiqua2$statistic,dig) ; pvalorgraf=ifelse(quiqua2$p.value < 0.001, "<0.001", round(quiqua2$p.value,3))
